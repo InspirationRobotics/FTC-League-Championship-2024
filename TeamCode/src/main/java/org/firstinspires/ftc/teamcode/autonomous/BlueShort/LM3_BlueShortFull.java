@@ -130,10 +130,12 @@ public class LM3_BlueShortFull extends LinearOpMode
                  * For a rear facing camera or a webcam, rotation is defined assuming the camera is facing
                  * away from the user.
                  */
+
                 webcam.startStreaming(1280, 720, OpenCvCameraRotation.UPRIGHT);
 
                 clawLeft.setPosition(0);
                 clawRight.setPosition(1);
+
             }
 
             @Override
@@ -173,7 +175,7 @@ public class LM3_BlueShortFull extends LinearOpMode
                 // Drive to Spike Mark
                 TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d())
                         .waitSeconds(2)
-                        .forward(27.5)
+                        .forward(26)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                 // Open Left Claw at the Spike Mark
@@ -188,7 +190,7 @@ public class LM3_BlueShortFull extends LinearOpMode
                 moveWristToInit(0.8);
                 // Heading Left Towards the Backboard, then Forwards to the Dropping Position for Center, then Turning for Into Depositing Position
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .strafeLeft(27)
+                        .strafeLeft(25)
                         .forward(24.5)
                         .turn(Math.toRadians(-92))
                         .build();
@@ -235,13 +237,13 @@ public class LM3_BlueShortFull extends LinearOpMode
                 TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d())
                         .waitSeconds(1)
                         .forward(24)
-                        .strafeLeft(8)
+                        .strafeLeft(9)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                 openClawLeft();
                 // Go back towards the wall
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(0.25)
+                        .waitSeconds(0.5)
                         .back(20)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
@@ -251,8 +253,8 @@ public class LM3_BlueShortFull extends LinearOpMode
                 // Strafe towards backboard, Move forward towards depositing position, turn to depositing position, and get closer to the backboard
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(1)
-                        .strafeLeft(18)
-                        .forward(21)
+                        .strafeLeft(17)
+                        .forward(18)
                         .turn(Math.toRadians(-92))
                         .back(8)
                         .build();
@@ -262,7 +264,7 @@ public class LM3_BlueShortFull extends LinearOpMode
                 moveWristToDeposit(0.7);
                 // Get closer to the backboard
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .back(3)
+                        .back(2)
                         .waitSeconds(1)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
@@ -272,7 +274,7 @@ public class LM3_BlueShortFull extends LinearOpMode
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(0.5)
                         .forward(10)
-                        .strafeLeft(30)
+                        .strafeRight(22)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                 // Reset claw, arm, and wrist to init
@@ -296,7 +298,7 @@ public class LM3_BlueShortFull extends LinearOpMode
                         .waitSeconds(1.5)
                         .forward(28)
                         .turn(Math.toRadians(-92))
-                        .forward(4.5)
+                        .forward(2.5)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                 //drop purple pixel
@@ -304,28 +306,22 @@ public class LM3_BlueShortFull extends LinearOpMode
                 //back up to the backdrop and strafe to left april tag
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(0.5)
-                        .back(28)
-                        .strafeLeft(5)
+                        .back(33)
+                        .strafeLeft(7)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                 //go to dropping position
                 closeClawLeft();
-                sleep(500);
                 moveWristToDeposit(0.7);
-                //wait for motion to complete
-                trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(0.5)
-                        .back(7)
-                        .waitSeconds(1)
-                        .build();
-                drive.followTrajectorySequence(trajSeq);
-                //open the right claw to drop the yellow pixel
+                sleep(500);
+                moveArmUp(0.7);
+                sleep(3000);
                 openClawRight();
                 //back up and strafe to parking position
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(2)
                         .forward(10)
-                        .strafeLeft(17)
+                        .strafeRight(32)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                 //close up (init position)
@@ -335,9 +331,10 @@ public class LM3_BlueShortFull extends LinearOpMode
                 moveWristToInit(0.7);
                 //drive in and park
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .back(20)
+                        .back(25)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
+
                 break;
             }
 
