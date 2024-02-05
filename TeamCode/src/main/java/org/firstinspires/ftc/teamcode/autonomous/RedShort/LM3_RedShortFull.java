@@ -60,7 +60,7 @@ public class LM3_RedShortFull extends LinearOpMode
     int wristGroundPosition = 138;
     int wristInitialPosition = 0;
     int wristDepositPosition = -91;
-    int armUpPosition = 1950;
+    int armUpPosition = 2075;
     int armDownPosition = 0;
     double clawLeftOpenPosition = 0.3;
     double clawLeftClosePosition = 0;
@@ -185,14 +185,15 @@ public class LM3_RedShortFull extends LinearOpMode
                 moveWristToInit(0.5);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(1)
-                        .strafeRight(24)
-                        .forward(23)
+                        .strafeRight(25)
+                        .forward(24)
                         .turn(Math.toRadians(92))
                         .build();
                 drive.followTrajectorySequence(trajSeq);
+                moveArmUp(0.7);
                 moveWristToDeposit(0.7);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .back(3)
+                        .back(5)
                         .waitSeconds(3)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
@@ -207,7 +208,7 @@ public class LM3_RedShortFull extends LinearOpMode
                 sleep(1000);
                 moveWristToInit(0.7);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .back(25.5)
+                        .back(26)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                 break;
@@ -239,7 +240,7 @@ public class LM3_RedShortFull extends LinearOpMode
                 //wait for motion to complete
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(1)
-                        .back(10)
+                        .back(15)
                         .strafeRight(2)
                         .waitSeconds(1)
                         .build();
@@ -292,7 +293,7 @@ public class LM3_RedShortFull extends LinearOpMode
                 moveArmUp(0.7);
                 moveWristToDeposit(0.7);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .back(2)
+                        .back(5)
                         .waitSeconds(3)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
