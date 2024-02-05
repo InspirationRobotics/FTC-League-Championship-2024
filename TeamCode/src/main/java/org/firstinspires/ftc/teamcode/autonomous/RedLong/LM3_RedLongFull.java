@@ -172,7 +172,7 @@ public class LM3_RedLongFull extends LinearOpMode
             if (pixelLocation == CENTER) {
                 moveWristToGround(0.5);
                 TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d())
-                        .waitSeconds(2)
+                        .waitSeconds(1)
                         .forward(27)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
@@ -185,7 +185,7 @@ public class LM3_RedLongFull extends LinearOpMode
                         closeClawLeft();
                         moveWristToInit(0.5);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(2)
+                        .waitSeconds(0.5)
                         .turn(Math.toRadians(93)) //turn left
                         .back(85)
                         .strafeRight(26)
@@ -193,13 +193,15 @@ public class LM3_RedLongFull extends LinearOpMode
                 drive.followTrajectorySequence(trajSeq);
                     moveArmUp(0.7);
                     moveWristToDeposit(0.7);
+                    sleep(3000);
                     openClawRight();
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(5)
+                        .waitSeconds(1)
                         .forward(10)
                         .strafeLeft(25)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
+                    closeClawRight();
                     moveArmDown(0.5);
                     sleep(1000);
                     moveWristToInit(0.5);
@@ -213,7 +215,7 @@ public class LM3_RedLongFull extends LinearOpMode
             if (pixelLocation == LEFT) {
                 moveWristToGround(0.5);
                 TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d())
-                        .waitSeconds(2)
+                        .waitSeconds(1)
                         .forward(25)
                         .strafeLeft(8)
                         .build();
@@ -227,7 +229,7 @@ public class LM3_RedLongFull extends LinearOpMode
                     closeClawLeft();
                     moveWristToInit(0.5);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(2)
+                        .waitSeconds(1)
                         .turn(Math.toRadians(93)) //turn left
                         .back(91)
                         .strafeRight(32)
@@ -235,13 +237,15 @@ public class LM3_RedLongFull extends LinearOpMode
                 drive.followTrajectorySequence(trajSeq);
                     moveArmUp(0.7);
                     moveWristToDeposit(0.7);
+                    sleep(3000);
                     openClawRight();
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(5)
+                        .waitSeconds(1)
                         .forward(10)
                         .strafeLeft(30)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
+                    closeClawRight();
                     moveArmDown(0.5);
                     sleep(1000);
                     moveWristToInit(0.5);
@@ -272,7 +276,7 @@ public class LM3_RedLongFull extends LinearOpMode
                     closeClawLeft();
                     moveWristToInit(0.5);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(1)
+                        .waitSeconds(0.5)
                         .turn(Math.toRadians(91))
                         .back(85)
                         .strafeRight(19)
@@ -280,13 +284,15 @@ public class LM3_RedLongFull extends LinearOpMode
                 drive.followTrajectorySequence(trajSeq);
                     moveArmUp(0.7);
                     moveWristToDeposit(0.7);
+                    sleep(3000);
                     openClawRight();
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(5)
+                        .waitSeconds(1)
                         .forward(10)
-                        .strafeLeft(15)
+                        .strafeLeft(18)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
+                    closeClawRight();
                     moveArmDown(0.5);
                     sleep(1000);
                     moveWristToInit(0.5);
@@ -386,7 +392,7 @@ public class LM3_RedLongFull extends LinearOpMode
 
         //Defining a rectangle example: Rect exampleRect = new Rect ( x starting location, y starting location, width, height)
         Rect centerRect = new Rect (1020, 530, 165, 170);
-        Rect leftRect = new Rect (440,540,165, 170);
+        Rect leftRect = new Rect (400,540,165, 170);
         // creating a variable to store the color of the rectangle
         Scalar rectColor = new Scalar (0.0, 0.0, 255.0);
 
