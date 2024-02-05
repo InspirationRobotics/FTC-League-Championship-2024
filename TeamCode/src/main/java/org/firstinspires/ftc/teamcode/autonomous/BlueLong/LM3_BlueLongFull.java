@@ -42,7 +42,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 import org.openftc.easyopencv.OpenCvWebcam;
 
 @Autonomous
-public class LM3_BlueLongParking extends LinearOpMode
+public class LM3_BlueLongFull extends LinearOpMode
 {
     OpenCvWebcam webcam;
 
@@ -146,13 +146,13 @@ public class LM3_BlueLongParking extends LinearOpMode
         telemetry.addLine("Waiting for start");
         telemetry.update();
 
+        clawLeft.setPosition(0);
+        clawRight.setPosition(1);
+
         /*
          * Wait for the user to press start on the Driver Station
          */
         waitForStart();
-
-        clawLeft.setPosition(0);
-        clawRight.setPosition(1);
 
         while (opModeIsActive())
         {
@@ -171,13 +171,13 @@ public class LM3_BlueLongParking extends LinearOpMode
                 moveWristToGround(0.5);
                 TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d())
                         .waitSeconds(2)
-                        .forward(26)
+                        .forward(27)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                     openClawLeft();
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(2)
-                        .back(22)
+                        .back(22.5)
                         .turn(Math.toRadians(-92)) //turn right
                         .build();
                 drive.followTrajectorySequence(trajSeq);
@@ -186,16 +186,17 @@ public class LM3_BlueLongParking extends LinearOpMode
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(1)
                         .back(82)
-                        .strafeLeft(20)
+                        .strafeLeft(26)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                     moveArmUp(0.7);
                     moveWristToDeposit(0.7);
+                    sleep(3000);
                     openClawRight();
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(5)
+                        .waitSeconds(1.5)
                         .forward(10)
-                        .strafeRight(25)
+                        .strafeRight(26)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                     closeClawRight();
@@ -212,7 +213,7 @@ public class LM3_BlueLongParking extends LinearOpMode
             if (pixelLocation == LEFT) {
                 moveWristToGround(0.5);
                 TrajectorySequence trajSeq = drive.trajectorySequenceBuilder(new Pose2d())
-                        .waitSeconds(2)
+                        .waitSeconds(1)
                         .forward(30)
                         .turn(Math.toRadians(90)) //turn left
                         .forward(5)
@@ -229,21 +230,22 @@ public class LM3_BlueLongParking extends LinearOpMode
                     closeClawLeft();
                     moveWristToInit(0.5);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(2)
                         .turn(Math.toRadians(-92))
-                        .back(82)
+                        .back(84)
                         .strafeLeft(20)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                     moveArmUp(0.7);
                     moveWristToDeposit(0.7);
+                    sleep(2500);
                     openClawRight();
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(5)
+                        .waitSeconds(0.5)
                         .forward(10)
                         .strafeRight(22)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
+                    closeClawRight();
                     moveArmDown(0.5);
                     sleep(1000);
                     moveWristToInit(0.5);
@@ -272,20 +274,22 @@ public class LM3_BlueLongParking extends LinearOpMode
                     moveWristToInit(0.5);
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
                         .waitSeconds(2)
-                        .turn(Math.toRadians(-91)) //turn right
-                        .back(91)
+                        .turn(Math.toRadians(-92)) //turn right
+                        .back(90)
                         .strafeLeft(36)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
                     moveArmUp(0.7);
                     moveWristToDeposit(0.7);
+                    sleep(3000);
                     openClawRight();
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
-                        .waitSeconds(5)
+                        .waitSeconds(1)
                         .forward(10)
                         .strafeRight(30)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
+                    closeClawRight();
                     moveArmDown(0.5);
                     sleep(1000);
                     moveWristToInit(0.5);
