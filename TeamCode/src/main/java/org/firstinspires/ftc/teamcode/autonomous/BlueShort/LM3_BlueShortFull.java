@@ -182,6 +182,7 @@ public class LM3_BlueShortFull extends LinearOpMode
                 openClawLeft();
                 // Drive Backwards towards the Wall
                 trajSeq = drive.trajectorySequenceBuilder(drive.getPoseEstimate())
+                        .waitSeconds(0.5)
                         .back(23)
                         .build();
                 drive.followTrajectorySequence(trajSeq);
